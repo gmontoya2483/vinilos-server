@@ -1,0 +1,16 @@
+{
+	"plugis":[],
+	"source": {
+		"include": ["routes"],
+		"includePattern":".ts$",
+		"excludePattern":"(node_modules/docs)"
+	},
+	"templates":{
+		"cleverLinks":false,
+		"monospaceLinks":false
+	},
+	"opts":{
+		"destination":"./doc",
+		"recurse": "true"
+	}
+}

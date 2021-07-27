@@ -4,7 +4,8 @@
   "description": "Backend Server vinyls_api",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "docs": "jsdoc -c jsdoc.json"
   },
   "author": "Gabriel Montoya",
   "license": "ISC",
@@ -23,6 +24,7 @@
     "helmet": "^3.23.0",
     "joi-objectid": "^3.0.1",
     "joi-password-complexity": "^4.1.0",
+    "jsdoc": "^3.6.7",
     "jsonwebtoken": "^8.5.1",
     "lodash": "^4.17.15",
     "mongoose": "^5.9.18",
