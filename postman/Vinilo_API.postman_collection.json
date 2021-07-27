@@ -1,0 +1,2433 @@
+{
+	"info": {
+		"_postman_id": "ea84ef64-3b52-4470-820d-738e8fc3f929",
+		"name": "Vinilo_API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "version",
+			"item": [
+				{
+					"name": "/users",
+					"item": [
+						{
+							"name": "admin",
+							"item": [
+								{
+									"name": "/users/admin/:id/delete",
+									"request": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "x-auth-token",
+												"type": "text",
+												"value": "{{jwt_token}}"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"isDeleted\": false\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{url}}/users/admin/5f79109009ca070a0c0483f2/delete",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"users",
+												"admin",
+												"5f79109009ca070a0c0483f2",
+												"delete"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "/users/admin/:id/administrator",
+									"request": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "x-auth-token",
+												"type": "text",
+												"value": "{{jwt_token}}"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"isAdmin\": true\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{url}}/users/admin/{{user_id}}/administrator",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"users",
+												"admin",
+												"{{user_id}}",
+												"administrator"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "/users/admin/:id/validate",
+									"request": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "x-auth-token",
+												"type": "text",
+												"value": "{{jwt_token}}"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"isValidated\": false\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{url}}/users/admin/60ecceb9afb2a62198a06215/validate",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"users",
+												"admin",
+												"60ecceb9afb2a62198a06215",
+												"validate"
+											],
+											"query": [
+												{
+													"key": "sendEmail",
+													"value": "true",
+													"disabled": true
+												}
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "/users",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-auth-token",
+										"value": "{{jwt_token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/users",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"users"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/users/:id",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-auth-token",
+										"value": "{{jwt_token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/users/{{user_id}}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"users",
+										"{{user_id}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/users",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = JSON.parse(responseBody);\r",
+											"tests[\"_id is not empty\"] = jsonData.usuario._id !== undefined;\r",
+											"\r",
+											"pm.environment.set(\"user_id\", jsonData.usuario._id);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"email\": \"gabi.montoya@gmail.com\",\n\t\"password\": \"123456aQ!\",\n\t\"nombre\": \"adminsitrador01\",\n\t\"apellido\": \"administrador\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/users",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"users"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/users/changePassword",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"email\": \"gabi.montoya@gmail.com\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/users/changePassword",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"users",
+										"changePassword"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/users/validateEmail",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "x-auth-token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDAzN2ZkY2EwZmQ1MzJkZDg4ZjI4OTgiLCJub21icmUiOiJUZXN0ZXIzNiIsImFwZWxsaWRvIjoiTWFzdGVyVGVzdDM2IiwiZW1haWwiOiJnYWJpLm1vbnRveWFAZ21haWwuY29tIiwiaXNWYWxpZGF0ZWQiOnsidmFsdWUiOmZhbHNlLCJ2YWxpZGF0ZWREYXRlVGltZSI6bnVsbH0sImlhdCI6MTYxMDg0MjA3NiwiZXhwIjoxNjExMDE0ODc2fQ.T6b8XD_iKwZLCLV3-WjpWCz5xIZaYbFdV7FHfsO3xZ0",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/users/validateEmail",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"users",
+										"validateEmail"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/users/changePassword",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "x-auth-token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDAzN2ZkY2EwZmQ1MzJkZDg4ZjI4OTgiLCJub21icmUiOiJUZXN0ZXIzNiIsImFwZWxsaWRvIjoiTWFzdGVyVGVzdDM2IiwiZW1haWwiOiJnYWJpLm1vbnRveWFAZ21haWwuY29tIiwiaXNWYWxpZGF0ZWQiOnsidmFsdWUiOnRydWUsInZhbGlkYXRlZERhdGVUaW1lIjoiMjAyMS0wMS0xN1QwMDoxMTo0OC42ODVaIn0sImlhdCI6MTYxMDg0NTI4MywiZXhwIjoxNjExMDE4MDgzfQ.kkE6qGvad6h2cIraXbGqEPRy52oeKumZe6xW8F4u29k",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\t\"password\": \"G@briel123456\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/users/changePassword",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"users",
+										"changePassword"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/users/:id/copies",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-auth-token",
+										"type": "text",
+										"value": "{{jwt_token}}"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/users/{{user_id}}/copies",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"users",
+										"{{user_id}}",
+										"copies"
+									],
+									"query": [
+										{
+											"key": "search",
+											"value": "brown",
+											"disabled": true
+										},
+										{
+											"key": "page",
+											"value": "2",
+											"disabled": true
+										},
+										{
+											"key": "pageSize",
+											"value": "2",
+											"disabled": true
+										},
+										{
+											"key": "showDeleted",
+											"value": "true",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "/auth",
+					"item": [
+						{
+							"name": "/auth",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = JSON.parse(responseBody);",
+											"tests[\"Access token not empty\"] = jsonData.token !== undefined;",
+											"",
+											"pm.environment.set(\"jwt_token\", jsonData.token);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer"
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"email\": \"gabi.montoya@gmail.com\",\n\t\"password\": \"123456aQ!\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/auth",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"auth"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "/countries",
+					"item": [
+						{
+							"name": "admin",
+							"item": [
+								{
+									"name": "/countries/admin",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"var jsonData = JSON.parse(responseBody);",
+													"tests[\"_id is not empty\"] = jsonData.country._id !== undefined;",
+													"",
+													"pm.environment.set(\"country_id\", jsonData.country._id);"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "x-auth-token",
+												"type": "text",
+												"value": "{{jwt_token}}"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n\t\"name\": \"Alemania\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{url}}/countries/admin",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"countries",
+												"admin"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "/countries/admin/<:_id>",
+									"request": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "x-auth-token",
+												"type": "text",
+												"value": "{{jwt_token}}"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/countries/admin/{{country_id}}",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"countries",
+												"admin",
+												"{{country_id}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "/countries/admin/<:id>",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "x-auth-token",
+												"type": "text",
+												"value": "{{jwt_token}}"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n\t\"name\": \"Alemaniaaaaaa\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{url}}/countries/admin/{{country_id}}",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"countries",
+												"admin",
+												"{{country_id}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "/countries/admin/:id/delete",
+									"request": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "x-auth-token",
+												"type": "text",
+												"value": "{{jwt_token}}"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"isDeleted\": true\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{url}}/countries/admin/{{country_id}}/delete",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"countries",
+												"admin",
+												"{{country_id}}",
+												"delete"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "/countries",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-auth-token",
+										"value": "{{jwt_token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/countries?showDeleted=true",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"countries"
+									],
+									"query": [
+										{
+											"key": "search",
+											"value": "ia",
+											"disabled": true
+										},
+										{
+											"key": "showDeleted",
+											"value": "true"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/countries/<:_id>",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-auth-token",
+										"value": "{{jwt_token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/countries/{{country_id}}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"countries",
+										"{{country_id}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/countries/<:_id>/communities",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-auth-token",
+										"type": "text",
+										"value": "{{jwt_token}}"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/countries/{{country_id}}/communities?showDeleted=true",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"countries",
+										"{{country_id}}",
+										"communities"
+									],
+									"query": [
+										{
+											"key": "showDeleted",
+											"value": "true"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "/communities",
+					"item": [
+						{
+							"name": "admin",
+							"item": [
+								{
+									"name": "/communities/admin/<:id>",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "x-auth-token",
+												"type": "text",
+												"value": "{{jwt_token}}"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n\t\"name\": \"Lo que sea se modifico\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{url}}/communities/admin/{{community_id}}",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"communities",
+												"admin",
+												"{{community_id}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "/communities/admin",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"var jsonData = JSON.parse(responseBody);",
+													"tests[\"_id is not empty\"] = jsonData.community._id !== undefined;",
+													"",
+													"pm.environment.set(\"community_id\", jsonData.community._id);"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "x-auth-token",
+												"type": "text",
+												"value": "{{jwt_token}}"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n\t\"name\": \"Argentinos en Milano\",\n\t\"countryId\": \"60ecde3d44f4fe0bf8efbccf\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{url}}/communities/admin",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"communities",
+												"admin"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "/communities/adin/:id/delete",
+									"request": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "x-auth-token",
+												"type": "text",
+												"value": "{{jwt_token}}"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"isDeleted\": true\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{url}}/communities/admin/{{community_id}}/delete",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"communities",
+												"admin",
+												"{{community_id}}",
+												"delete"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "/communities/admin/<:_id>",
+									"request": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "x-auth-token",
+												"type": "text",
+												"value": "{{jwt_token}}"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/communities/admin/{{community_id}}",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"communities",
+												"admin",
+												"{{community_id}}"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "/communities",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-auth-token",
+										"value": "{{jwt_token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/communities?search=Vie&showDeleted=true",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"communities"
+									],
+									"query": [
+										{
+											"key": "search",
+											"value": "Vie"
+										},
+										{
+											"key": "showDeleted",
+											"value": "true"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/communities/<:_id>",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-auth-token",
+										"value": "{{jwt_token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/communities/5f0a0725b6c21a36a807fdaf",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"communities",
+										"5f0a0725b6c21a36a807fdaf"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/communities/<:_id>/members",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-auth-token",
+										"type": "text",
+										"value": "{{jwt_token}}"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/communities/5f0a0837b6c21a36a807fdcb/members?page=1&pageSize=25&showDeleted=true",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"communities",
+										"5f0a0837b6c21a36a807fdcb",
+										"members"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "1"
+										},
+										{
+											"key": "pageSize",
+											"value": "25"
+										},
+										{
+											"key": "search",
+											"value": "test",
+											"disabled": true
+										},
+										{
+											"key": "showDeleted",
+											"value": "true"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "/upload",
+					"item": [
+						{
+							"name": "/uploads/:type/:id",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "x-auth-token",
+										"type": "text",
+										"value": "{{jwt_token}}",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "imagen",
+											"type": "file",
+											"src": "/C:/Users/Gabriel/Pictures/P9290026.jpg"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/uploads/books/1212121214ffff",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"uploads",
+										"books",
+										"1212121214ffff"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "/me",
+					"item": [
+						{
+							"name": "/following",
+							"item": [
+								{
+									"name": "/me/following",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "x-auth-token",
+												"type": "text",
+												"value": "{{jwt_token}}"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/me/following?page=1&pageSize=25",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"me",
+												"following"
+											],
+											"query": [
+												{
+													"key": "page",
+													"value": "1"
+												},
+												{
+													"key": "pageSize",
+													"value": "25"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "/me/following/:id",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "x-auth-token",
+												"type": "text",
+												"value": "{{jwt_token}}"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/me/following/5f0a08bbb6c21a36a807fdd3",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"me",
+												"following",
+												"5f0a08bbb6c21a36a807fdd3"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "/me/following/:id",
+									"request": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "x-auth-token",
+												"type": "text",
+												"value": "{{jwt_token}}"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/me/following/5f0a08bbb6c21a36a807fdd3",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"me",
+												"following",
+												"5f0a08bbb6c21a36a807fdd3"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "/me/following",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "x-auth-token",
+												"type": "text",
+												"value": "{{jwt_token}}"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"followingUserId\": \"5f0a08bbb6c21a36a807fdd3\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{url}}/me/following",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"me",
+												"following"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "/followers",
+							"item": [
+								{
+									"name": "/me/followers",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "x-auth-token",
+												"type": "text",
+												"value": "{{jwt_token}}"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/me/followers?page=1&pageSize=25",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"me",
+												"followers"
+											],
+											"query": [
+												{
+													"key": "page",
+													"value": "1"
+												},
+												{
+													"key": "pageSize",
+													"value": "25"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "/me/followers/:id/confirm",
+									"request": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "x-auth-token",
+												"type": "text",
+												"value": "{{jwt_token}}"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/me/followers//5f33302173099903609803c7/confirm",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"me",
+												"followers",
+												"",
+												"5f33302173099903609803c7",
+												"confirm"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "/me/followers/:id",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "x-auth-token",
+												"type": "text",
+												"value": "{{jwt_token}}"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/me/followers/5f0a08bbb6c21a36a807fdd3",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"me",
+												"followers",
+												"5f0a08bbb6c21a36a807fdd3"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "/me/followers/:id",
+									"request": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "x-auth-token",
+												"type": "text",
+												"value": "{{jwt_token}}"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/me/followers//5f33302173099903609803c7",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"me",
+												"followers",
+												"",
+												"5f33302173099903609803c7"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "/copies",
+							"item": [
+								{
+									"name": "/me/copies",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "x-auth-token",
+												"type": "text",
+												"value": "{{jwt_token}}"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"vinylId\": \"60ece5a617a0a026bccc2506\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{url}}/me/copies",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"me",
+												"copies"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "/me/copies",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "x-auth-token",
+												"type": "text",
+												"value": "{{jwt_token}}"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/me/copies",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"me",
+												"copies"
+											],
+											"query": [
+												{
+													"key": "search",
+													"value": "brown",
+													"disabled": true
+												},
+												{
+													"key": "page",
+													"value": "2",
+													"disabled": true
+												},
+												{
+													"key": "pageSize",
+													"value": "2",
+													"disabled": true
+												},
+												{
+													"key": "showDeleted",
+													"value": "true",
+													"disabled": true
+												}
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "/me",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-auth-token",
+										"type": "text",
+										"value": "{{jwt_token}}"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/me",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"me"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/me/token",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = JSON.parse(responseBody);\r",
+											"tests[\"Access token not empty\"] = jsonData.token !== undefined;\r",
+											"\r",
+											"pm.environment.set(\"jwt_token\", jsonData.token);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-auth-token",
+										"type": "text",
+										"value": "{{jwt_token}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/me/token",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"me",
+										"token"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/me/img",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = JSON.parse(responseBody);\r",
+											"tests[\"Access token not empty\"] = jsonData.token !== undefined;\r",
+											"\r",
+											"pm.environment.set(\"jwt_token\", jsonData.token);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "x-auth-token",
+										"type": "text",
+										"value": "{{jwt_token}}"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "imagen",
+											"type": "file",
+											"src": "/C:/Users/Gabriel/Pictures/2162_55820725702_5390_n.jpg"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/me/img",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"me",
+										"img"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/me",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "x-auth-token",
+										"type": "text",
+										"value": "{{jwt_token}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"nombre\": \"Gabriel\",\n\t\"apellido\": \"Montoya\",\n\t\"paisResidenciaId\": \"60ecde3d44f4fe0bf8efbccf\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/me",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"me"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/me/community",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "x-auth-token",
+										"type": "text",
+										"value": "{{jwt_token}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"comunidadId\": \"60ece05544f4fe0bf8efbcd7\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/me/community",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"me",
+										"community"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/me/community/members",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-auth-token",
+										"type": "text",
+										"value": "{{jwt_token}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/me/community/members?page=1&pageSize=25&search=test&showDeleted=true",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"me",
+										"community",
+										"members"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "1"
+										},
+										{
+											"key": "pageSize",
+											"value": "25"
+										},
+										{
+											"key": "search",
+											"value": "test"
+										},
+										{
+											"key": "showDeleted",
+											"value": "true"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/me/community/copies",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-auth-token",
+										"type": "text",
+										"value": "{{jwt_token}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/me/community/copies?page=1&search=marra&showDeleted=true",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"me",
+										"community",
+										"copies"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "1"
+										},
+										{
+											"key": "pageSize",
+											"value": "2",
+											"disabled": true
+										},
+										{
+											"key": "search",
+											"value": "marra"
+										},
+										{
+											"key": "showDeleted",
+											"value": "true"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/me/delete",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "x-auth-token",
+										"type": "text",
+										"value": "{{jwt_token}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"isDeleted\": false\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/me/delete",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"me",
+										"delete"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "/img",
+					"item": [
+						{
+							"name": "/img/:type/:imgName",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "",
+										"type": "text",
+										"value": "",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{url}}/img/users/5f05fff7bd623344a82a3621-951.jpeg",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"img",
+										"users",
+										"5f05fff7bd623344a82a3621-951.jpeg"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "/genres",
+					"item": [
+						{
+							"name": "admin",
+							"item": [
+								{
+									"name": "/genres/admin",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"var jsonData = JSON.parse(responseBody);\r",
+													"tests[\"_id is not empty\"] = jsonData.genre._id !== undefined;\r",
+													"\r",
+													"pm.environment.set(\"genre_id\", jsonData.genre._id);"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "x-auth-token",
+												"type": "text",
+												"value": "{{jwt_token}}"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"name\": \"latino\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{url}}/genres/admin",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"genres",
+												"admin"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "/genres/admin/:id",
+									"request": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "x-auth-token",
+												"type": "text",
+												"value": "{{jwt_token}}"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"name\": \"Modificado\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{url}}/genres/admin/{{genre_id}}",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"genres",
+												"admin",
+												"{{genre_id}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "/genres/admin/:id",
+									"request": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "x-auth-token",
+												"type": "text",
+												"value": "{{jwt_token}}"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/genres/admin/{{genre_id}}",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"genres",
+												"admin",
+												"{{genre_id}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "/genres/admin/:id/delete",
+									"request": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "x-auth-token",
+												"type": "text",
+												"value": "{{jwt_token}}"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"isDeleted\": true\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{url}}/genres/admin/{{genre_id}}/delete",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"genres",
+												"admin",
+												"{{genre_id}}",
+												"delete"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "/genres",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-auth-token",
+										"type": "text",
+										"value": "{{jwt_token}}"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/genres?search=&showDeleted=true",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"genres"
+									],
+									"query": [
+										{
+											"key": "search",
+											"value": ""
+										},
+										{
+											"key": "showDeleted",
+											"value": "true"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/genres/:id",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-auth-token",
+										"type": "text",
+										"value": "{{jwt_token}}"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/genres/{{genre_id}}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"genres",
+										"{{genre_id}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "/authors",
+					"item": [
+						{
+							"name": "admin",
+							"item": [
+								{
+									"name": "/authors/admin/:id",
+									"request": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "x-auth-token",
+												"type": "text",
+												"value": "{{jwt_token}}"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/authors/admin/{{author_id}}",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"authors",
+												"admin",
+												"{{author_id}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "/authors/admin/:id/delete",
+									"request": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "x-auth-token",
+												"type": "text",
+												"value": "{{jwt_token}}"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"isDeleted\": false\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{url}}/authors/admin/{{author_id}}/delete",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"authors",
+												"admin",
+												"{{author_id}}",
+												"delete"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "/authors/admin/:id",
+									"request": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "x-auth-token",
+												"type": "text",
+												"value": "{{jwt_token}}"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"name\": \"Joan Manuel\",\r\n    \"lastName\": \"Serrat\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{url}}/authors/admin/{{author_id}}",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"authors",
+												"admin",
+												"{{author_id}}"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "/authors",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-auth-token",
+										"type": "text",
+										"value": "{{jwt_token}}"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/authors?page=1&pageSize=25&showDeleted=true",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"authors"
+									],
+									"query": [
+										{
+											"key": "search",
+											"value": "cortazar",
+											"disabled": true
+										},
+										{
+											"key": "page",
+											"value": "1"
+										},
+										{
+											"key": "pageSize",
+											"value": "25"
+										},
+										{
+											"key": "showDeleted",
+											"value": "true"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/authors/:id",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-auth-token",
+										"type": "text",
+										"value": "{{jwt_token}}"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/authors/607f76248f2a032f005a878a",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"authors",
+										"607f76248f2a032f005a878a"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/authors/:id/books",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-auth-token",
+										"type": "text",
+										"value": "{{jwt_token}}"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/authors/607f76248f2a032f005a878a/books?showDeleted=true",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"authors",
+										"607f76248f2a032f005a878a",
+										"books"
+									],
+									"query": [
+										{
+											"key": "showDeleted",
+											"value": "true"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/authors",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = JSON.parse(responseBody);\r",
+											"tests[\"_id is not empty\"] = jsonData.author._id !== undefined;\r",
+											"\r",
+											"pm.environment.set(\"author_id\", jsonData.author._id);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-auth-token",
+										"type": "text",
+										"value": "{{jwt_token}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Joan Manuel\",\r\n    \"lastName\": \"Serrat\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/authors",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"authors"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "/vinyls",
+					"item": [
+						{
+							"name": "admin",
+							"item": [
+								{
+									"name": "/vinyls/admin/:id",
+									"request": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "x-auth-token",
+												"type": "text",
+												"value": "{{jwt_token}}"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"title\": \"Esta boca es mía\",\r\n    \"description\": \"Disco estudio\",\r\n    \"authorId\": \"60ece15d44f4fe0bf8efbcde\",\r\n    \"genreId\": \"60ece1c944f4fe0bf8efbcdf\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{url}}/vinyls/admin/{{vinyl_id}}",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"vinyls",
+												"admin",
+												"{{vinyl_id}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "/vinyls/admin/:id",
+									"request": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "x-auth-token",
+												"type": "text",
+												"value": "{{jwt_token}}"
+											}
+										],
+										"url": {
+											"raw": "{{url}}/vinyls/admin/{{vinyl_id}}",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"vinyls",
+												"admin",
+												"{{vinyl_id}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "/vinyls/admin/:id/delete",
+									"request": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "x-auth-token",
+												"type": "text",
+												"value": "{{jwt_token}}"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"isDeleted\": false\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{url}}/vinyls/admin/{{vinyl_id}}/delete",
+											"host": [
+												"{{url}}"
+											],
+											"path": [
+												"vinyls",
+												"admin",
+												"{{vinyl_id}}",
+												"delete"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "/vinyls",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-auth-token",
+										"type": "text",
+										"value": "{{jwt_token}}"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/vinyls",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"vinyls"
+									],
+									"query": [
+										{
+											"key": "search",
+											"value": "borra",
+											"disabled": true
+										},
+										{
+											"key": "page",
+											"value": "2",
+											"disabled": true
+										},
+										{
+											"key": "pageSize",
+											"value": "2",
+											"disabled": true
+										},
+										{
+											"key": "showDeleted",
+											"value": "true",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/vinyls",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = JSON.parse(responseBody);\r",
+											"tests[\"_id is not empty\"] = jsonData.vinyl._id !== undefined;\r",
+											"\r",
+											"pm.environment.set(\"vinyl_id\", jsonData.vinyl._id);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-auth-token",
+										"type": "text",
+										"value": "{{jwt_token}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"Esta boca en Mia\",\r\n    \"description\": \"Disco de estudio\",\r\n    \"authorId\": \"60ece15d44f4fe0bf8efbcde\",\r\n    \"genreId\": \"60ece1c944f4fe0bf8efbcdf\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/vinyls",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"vinyls"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "/vinyls/:id",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-auth-token",
+										"type": "text",
+										"value": "{{jwt_token}}"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/vinyls/{{vinyl_id}}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"vinyls",
+										"{{vinyl_id}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	]
+}

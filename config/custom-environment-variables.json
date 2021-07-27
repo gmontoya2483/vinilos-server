@@ -1,0 +1,14 @@
+{
+  "SERVER_PORT": "vinyl_api_port",
+  "DB_CONNECTION_URL": "vinyl_api_db_connection_url",
+  "jwt": {
+    "JWT_PRIVATE_KEY": "vinyl_api_jwtPrivateKey"
+  },
+  "notification": {
+    "NOT_BASE_URL": "vinyl_api_notBaseUrl"
+  },
+  "sendGrid": {
+    "SEND_GRID_API_KEY": "vinyl_api_sendGridApiKey",
+    "SEND_GRID_FROM_EMAIL": "vinyl_api_sendGridFromEmail"
+  }
+}
