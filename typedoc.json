@@ -1,0 +1,4 @@
+{
+	"entryPoints": ["services"],
+	"out": "doc"
+}

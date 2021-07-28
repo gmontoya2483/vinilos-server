@@ -3,9 +3,6 @@ import {validateAuthenticationBody} from "../middlewares/body_request_validation
 import {AuthService} from "../services/authentication.service";
 
 const router = Router();
-/**
- *  EndPoint para autenticar al usuario
- * */
 router.post('/',[validateAuthenticationBody], async (req: Request, res: Response) => {
     const returnedResponse = await AuthService.authenticateUser(req.body);
     return res.status(returnedResponse.status).json(returnedResponse.response);

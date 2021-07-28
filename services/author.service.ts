@@ -11,10 +11,17 @@ import {DEFAULT_PAGE_SIZE} from "../globals/environment.global";
 
 import {VinylService} from "./vinyl.service";
 
-
+/**
+ *  Esta clase abstracta se encarga de del manejo de los autores
+ * */
 
 export abstract class AuthorService {
 
+    /**
+     * Este método se utiliza para agregar un nuevo autor
+     *  @returns el autor insertado
+     *  @param datos del nuevo autor
+     * */
     public static async newAuthor (newAuthor: INewAuthor): Promise<IServiceResponse>{
 
         const name = newAuthor.name.trim().toUpperCase();
